@@ -82,16 +82,13 @@ const Footer = function() {
                   )
                 })}
               </div>
-
               </div>
-
               <div>
                 <p className="text-grey1">
                   {crrYear} Orebi Minimal eCommerce Figma Template by Adveits
                 </p>
               </div>
             </div>
-
           </div>
         </div>
       </Container>

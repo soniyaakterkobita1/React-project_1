@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Container from '../../components/common/Container'
 import { GoChevronRight } from "react-icons/go";
 import BreadCrumb from '../../components/common/BreadCrumb';
@@ -7,6 +7,26 @@ import Input from '../../components/common/Input';
 import PrimaryButton from '../../components/common/PrimaryButton';
 
 const LoginIndex = () => {
+    const [formData, setFormData] = useState({
+        email : '', 
+        password : ''
+    })
+    const [errors, setErrors] = useState({
+        email : '', 
+        password : ''
+    })
+    const handleformChange = (e)=>{
+        const { name, value} = e.target;
+        setFormData((prevData) =>({
+            ...prevData,
+            [name]: value
+        }))
+    }
+    const handleLogin = ()=>{
+        console.log(formData)
+    }
+
+
   return (
      <Container>
         <div className='py-34'>
@@ -19,13 +39,13 @@ const LoginIndex = () => {
                 <div className='mt-10 max-w-[1055px] grid grid-cols-2'>
                     <div className='flex flex-col'>
                         <label className='font-bold text-base leading-6 text-black_2'>Email address</label>
-                        <Input type="email" placeholder="Enter your email" name="email" className="py-4 text-base text-black placeholder:text-gray_3 border-b-gray_4 outline-none"/>
+                        <Input onChange={handleformChange} type="email" placeholder="Enter your email" name="email" className="py-4 text-base text-black placeholder:text-gray_3 border-b-gray_4 outline-none"/>
                     </div>
                     <div className='flex flex-col'>
                         <label className='font-bold text-base leading-6 text-black_2'>Password</label>
-                        <Input type="password" placeholder="Enter your password" name="password" className="py-4 text-base text-black placeholder:text-gray_3 border-b-gray_4 outline-0"/>
+                        <Input onChange={handleformChange} type="password" placeholder="Enter your password" name="password" className="py-4 text-base text-black placeholder:text-gray_3 border-b-gray_4 outline-0"/>
                     </div>
-                    <PrimaryButton label="Login" className="mt-7.5"/>
+                    <PrimaryButton onClick={handleLogin} label="Login" className="mt-7.5"/>
                 </div>
             </div>
                 <div className='pt-15'>
