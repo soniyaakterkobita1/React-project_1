@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Container from '../../components/common/Container'
 import { GoChevronRight } from "react-icons/go";
 import BreadCrumb from '../../components/common/BreadCrumb';
@@ -15,16 +15,48 @@ const LoginIndex = () => {
         email : '', 
         password : ''
     })
+    let emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
     const handleformChange = (e)=>{
         const { name, value} = e.target;
         setFormData((prevData) =>({
             ...prevData,
             [name]: value
         }))
+        // setErrors({}) 
     }
     const handleLogin = ()=>{
-        console.log(formData)
+        if(!formData.email){
+            setErrors((prevErrors) => ({
+                ...prevErrors,
+                email: 'Email is required'
+            }));
+        }else if(!emailRegex.test(formData.email)){
+            setErrors((prevErrors) => ({
+                ...prevErrors,
+                email: 'Please enter a valid email address'
+            }));
+        }
+        else{
+            setErrors((prevErrors) => ({
+                ...prevErrors,
+                email: ''
+            }));
+        }
+        if(!formData.password){
+            setErrors((prevErrors) => ({
+                ...prevErrors,
+                password: 'Password is required'
+            }));
+        }else{
+            setErrors((prevErrors) => ({
+                ...prevErrors,
+                password: ''
+            }));
+        }
     }
+    useEffect(()=>{
+     console.log(errors)
+    },[errors])
 
 
   return (
@@ -40,10 +72,16 @@ const LoginIndex = () => {
                     <div className='flex flex-col'>
                         <label className='font-bold text-base leading-6 text-black_2'>Email address</label>
                         <Input onChange={handleformChange} type="email" placeholder="Enter your email" name="email" className="py-4 text-base text-black placeholder:text-gray_3 border-b-gray_4 outline-none"/>
+                        {errors.email &&
+                        <span className='text-red-500 text-sm'>{errors.email}</span> 
+                        }
                     </div>
                     <div className='flex flex-col'>
                         <label className='font-bold text-base leading-6 text-black_2'>Password</label>
                         <Input onChange={handleformChange} type="password" placeholder="Enter your password" name="password" className="py-4 text-base text-black placeholder:text-gray_3 border-b-gray_4 outline-0"/>
+                        {errors.password &&
+                        <span className='text-red-500 text-sm'>{errors.password}</span>
+                        }
                     </div>
                     <PrimaryButton onClick={handleLogin} label="Login" className="mt-7.5"/>
                 </div>
