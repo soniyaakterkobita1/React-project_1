@@ -12,6 +12,8 @@ import OthersIndex from "./pages/others/OthersIndex";
 import AccountDetailsIndex from "./pages/accountdetails/AccountDetailsIndex";
 import AddressesIndex from "./pages/addresses/AddressesIndex";
 import ProfileIndex from "./pages/profile/ProfileIndex";
+import Registration from "./pages/registration/Registration";
+import ContactIndex from "./pages/contact/ContactIndex";
 
 
 const routes = createRoutesFromElements(
@@ -20,7 +22,9 @@ const routes = createRoutesFromElements(
       <Route index element={<HomeIndex/>} />
       <Route path='/shop' element={<ShopIndex/>} />
       <Route path='/cart' element={<CartIndex/>} />
-      <Route path='login' element={<LoginIndex/>}/>
+      <Route path='/login' element={<LoginIndex/>}/>
+      <Route path='/registration' element={<Registration/>}/>
+      <Route path='/contacts' element={<ContactIndex/>}/>
     <Route element={<DashboardLayout/>}>
       <Route path='dashboard' element={<DashboardIndex/>}/>
       <Route path='/downloads' element={<DownloadIdnex/>}/>
