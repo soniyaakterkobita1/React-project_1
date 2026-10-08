@@ -12,6 +12,7 @@ import { NavData, profileDropdownData } from '../../dummyData/NavData'
 import { IoMdClose } from "react-icons/io";
 import useOutsideClick from '../../hooks/useOutsideClick'
 import { MdLogin } from "react-icons/md";
+import { ToastContainer } from 'react-toastify'
 
 
 const Navber = () => {
@@ -34,6 +35,7 @@ const Navber = () => {
 
   return (
     <div>
+          <ToastContainer/>  
     <nav className='py-8'>
         <Container>
             <div className=' flex justify-between items-center'>

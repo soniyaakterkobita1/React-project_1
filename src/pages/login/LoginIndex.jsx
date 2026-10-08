@@ -5,6 +5,7 @@ import BreadCrumb from '../../components/common/BreadCrumb';
 import Peragraph from '../../components/common/Peragraph';
 import Input from '../../components/common/Input';
 import PrimaryButton from '../../components/common/PrimaryButton';
+import { toast } from 'react-toastify';
 
 const LoginIndex = () => {
   const [formData, setFormData] = useState({
@@ -56,6 +57,16 @@ const LoginIndex = () => {
     setErrors(validationErrors);
     if (Object.keys(validationErrors).length > 0) { return;}
     console.log("Login Data:", formData);
+        toast.success('🦄 Login Successfully!', {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+       });
   };
 
   const titleStyle = "text-[39px] text-black_2 font-bold";

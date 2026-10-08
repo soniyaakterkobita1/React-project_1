@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import BreadCrumb from '../../common/BreadCrumb'
 import PrimaryButton from '../../common/PrimaryButton';
 import Input from '../../common/Input';
+import { toast, ToastContainer } from 'react-toastify';
 
 const ContactForm = () => {
 
@@ -56,10 +57,32 @@ const ContactForm = () => {
     setErrors(validationErrors);
     if (Object.keys(validationErrors).length > 0) { return;}
     console.log("Contact Data:", formData);
+      toast.success('🦄 Successfully submitted!', {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+   });
   };
 
   return (
-    <div>
+     <div>
+       <ToastContainer
+            position="bottom-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick={false}
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="dark"
+            />  
       <BreadCrumb pageLabel={`Contact`} rootPage={`Home`}/>
       <h3 className="text-[39px] font-bold mb-4 text-black_2 mt-31.25">Fill up a Form</h3>
       <div className="max-w-195 mt-10.5">
